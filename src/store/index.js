@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import todosReducer from './slices/todosSlice'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' 
+
  
 const rootReducer=combineReducers({
   todos: todosReducer
@@ -10,7 +11,7 @@ const rootReducer=combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist:['todos']
+  whitelist:[]
 }
  
 const persistedReducer = persistReducer(persistConfig, rootReducer)

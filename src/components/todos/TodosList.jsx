@@ -1,14 +1,26 @@
 import React from "react";
 import { deleteTodo,toggleDoneTodo,editTodo } from '../../store/slices/todosSlice'
 import {useDispatch} from 'react-redux'
+import axios from "axios";
 
 export default function TodosList({todo}) {
   const dispatch = useDispatch()
-  const todoDeleteHandler = ()=>dispatch(deleteTodo(todo.id))
+  const todoDeleteHandler = async()=>{
+    try{
+      let res = await axios.delete(`https://62b08df6efe73bc8bc252569.endapi.io/todos/${todo.id}`)
+    dispatch(deleteTodo(todo.id))
+    }catch(e){
+      console.log(e)
+    }
+  }
   
-  const toggleDoneTodoHandler = () => {
+  const toggleDoneTodoHandler = async() => {
+    let res = axios.put(`https://62b08df6efe73bc8bc252569.endapi.io/todos/${todo.id}`,{
+      ...todo,
+      done:!todo.done
+    })
     dispatch(toggleDoneTodo({id:todo.id}))
-    dispatch(editTodo({id:todo.id,text:'new text'}))
+    // dispatch(editTodo({id:todo.id,text:'new text'}))
 }
   return (
     <>
