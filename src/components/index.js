@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React,{useEffect} from 'react'
-import Header from './todos/Header'
-import TodosList from './todos/TodosList'
-import FormAddTodo from './todos/FormAddTodo'
+import Header from './todos/header'
+import TodosList from './todos/todosList'
+import FormAddTodo from './todos/formAddTodo'
 import { useSelector } from 'react-redux'
 import axios from 'axios'
 import { setTodos } from './../store/slices/todosSlice'
